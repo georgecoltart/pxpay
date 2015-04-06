@@ -34,6 +34,7 @@ module Pxpay
     def url
       response = ::RestClient.post(Pxpay::Base.pxpay_request_url, post )
       response_text = ::Nokogiri::XML(response)
+      puts response_text
       if response_text.at_css("Request").attributes["valid"].value == "1"
         url = response_text.at_css("URI").inner_html
       else
